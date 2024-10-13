@@ -3,6 +3,7 @@ package com.example.grocerystore
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -17,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat
 class StoreActivity : AppCompatActivity() {
 
     private val galleryRequest = 302
+    private val itemDescriptionRequest = 15
     private var items: MutableList<Item> = mutableListOf()
     private var photoUri: Uri? = null
 
@@ -76,15 +78,30 @@ class StoreActivity : AppCompatActivity() {
             val product = items[position]
             val intent = Intent(this, ItemDescription::class.java)
             intent.putExtra("product", product)
-            startActivity(intent)
+            intent.putExtra("position", position)
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // Добавляем флаг для разрешения
+            startActivityForResult(intent, itemDescriptionRequest)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == galleryRequest) if (resultCode === RESULT_OK) {
-            photoUri = data?.data
-            productImage.setImageURI(photoUri)
+        if (requestCode == galleryRequest) {
+            if (resultCode == RESULT_OK) {
+                photoUri = data?.data
+                productImage.setImageURI(photoUri)
+            }
+        } else if (requestCode == itemDescriptionRequest) {
+            if (resultCode == RESULT_OK && data != null) {
+                val updatedItem = data.getSerializableExtra("updatedProduct") as? Item
+                val position = data.getIntExtra("position", -1)
+                if (updatedItem != null && position != -1) {
+                    items[position] = updatedItem
+                    (listView.adapter as ListAdapter).notifyDataSetChanged()
+                } else {
+                    Log.e("StoreActivity", "Invalid item data or position")
+                }
+            }
         }
     }
 
