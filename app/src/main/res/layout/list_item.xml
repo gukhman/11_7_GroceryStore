@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/listImageView"
+        android:id="@+id/productPhoto"
         android:layout_width="140dp"
         android:layout_height="140dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/listImageView"
+        app:layout_constraintStart_toEndOf="@+id/productPhoto"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/listImageView"
+        app:layout_constraintStart_toEndOf="@+id/productPhoto"
         app:layout_constraintTop_toBottomOf="@+id/unitET" />
 
     <TextView
@@ -45,7 +45,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/listImageView"
+        app:layout_constraintStart_toEndOf="@+id/productPhoto"
         app:layout_constraintTop_toBottomOf="@+id/listNameTV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

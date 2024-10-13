@@ -1,10 +1,8 @@
 package com.example.grocerystore
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -15,17 +13,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.io.IOException
 
 class StoreActivity : AppCompatActivity() {
 
     private val galleryRequest = 302
-    var bitmap: Bitmap? = null
-    var items: MutableList<Item> = mutableListOf()
+    private var items: MutableList<Item> = mutableListOf()
+    private var photoUri: Uri? = null
 
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
     private lateinit var productName: EditText
     private lateinit var productPrice: EditText
+    private lateinit var productDescription: EditText
     private lateinit var productImage: ImageView
     private lateinit var addBTN: Button
     private lateinit var listView: ListView
@@ -45,6 +43,7 @@ class StoreActivity : AppCompatActivity() {
 
         productName = findViewById(R.id.nameET)
         productPrice = findViewById(R.id.priceET)
+        productDescription = findViewById(R.id.descriptionET)
         productImage = findViewById(R.id.photoIW)
         addBTN = findViewById(R.id.buttonAdd)
         listView = findViewById(R.id.listView)
@@ -58,29 +57,34 @@ class StoreActivity : AppCompatActivity() {
         addBTN.setOnClickListener {
             val itemName = productName.text.toString()
             val itemPrice = productPrice.text.toString()
-            val itemImage = bitmap
-            val item = Item(itemName, itemPrice, itemImage)
+            val itemDescription = productDescription.text.toString()
+            val itemImage = photoUri.toString()
+            val item = Item(itemName, itemPrice, itemDescription, itemImage)
             items.add(item)
+            photoUri = null
 
             val listAdapter = ListAdapter(this, items)
             listView.adapter = listAdapter
             listAdapter.notifyDataSetChanged()
             productName.text.clear()
             productPrice.text.clear()
-            productImage.setImageDrawable(null)
+            productDescription.text.clear()
+            productImage.setImageResource(R.drawable.photo_default)
+        }
+
+        listView.setOnItemClickListener { _, _, position, _ ->
+            val product = items[position]
+            val intent = Intent(this, ItemDescription::class.java)
+            intent.putExtra("product", product)
+            startActivity(intent)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == galleryRequest) if (resultCode === RESULT_OK) {
-            val selectedImage: Uri? = data?.data
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImage)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-            productImage.setImageBitmap(bitmap)
+            photoUri = data?.data
+            productImage.setImageURI(photoUri)
         }
     }
 

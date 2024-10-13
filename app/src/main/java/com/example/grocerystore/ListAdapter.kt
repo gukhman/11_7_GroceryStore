@@ -1,6 +1,7 @@
 package com.example.grocerystore
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,11 +18,11 @@ class ListAdapter(context: Context, itemList: MutableList<Item>) :
             view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false)
         }
 
-        val listImageViewIV = view?.findViewById<ImageView>(R.id.listImageView)
+        val listImageViewIV = view?.findViewById<ImageView>(R.id.productPhoto)
         val listNameET = view?.findViewById<TextView>(R.id.listNameTV)
         val listPriceET = view?.findViewById<TextView>(R.id.listPriceTV)
 
-        listImageViewIV?.setImageBitmap(item?.image)
+        listImageViewIV?.setImageURI(Uri.parse(item?.image))
         listNameET?.text = item?.name
         listPriceET?.text = item?.price.toString()
         return view!!

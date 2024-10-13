@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".StoreActivity">
 
@@ -27,7 +28,8 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/photoIW"
             android:layout_width="140dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:src="@drawable/photo_default"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,16 +49,21 @@
                 android:layout_height="wrap_content"
                 android:hint="Цена" />
 
-            <Button
-                android:id="@+id/buttonAdd"
-                android:layout_width="150dp"
+            <EditText
+                android:id="@+id/descriptionET"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Добавить" />
+                android:hint="Краткое описание" />
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Добавить" />
 
     <ListView
         android:id="@+id/listView"
