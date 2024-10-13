@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Описание товара" />
+        app:title="@string/itemDescr" />
 
     <ImageView
         android:id="@+id/productPhoto"
@@ -31,7 +31,7 @@
         android:id="@+id/listNameTV"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:hint="Наименование"
+        android:hint="@string/nameHint"
         android:padding="11sp"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
         android:id="@+id/listPriceTV"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:hint="Цена"
+        android:hint="@string/priceHint"
         android:padding="11sp"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
         android:id="@+id/listDescriptionTV"
         android:layout_width="0dp"
         android:layout_height="250dp"
-        android:hint="Описание"
+        android:hint="@string/descriptionHint"
         android:padding="11sp"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"

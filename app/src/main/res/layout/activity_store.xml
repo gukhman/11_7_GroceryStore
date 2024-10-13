@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Список продуктов" />
+        app:title="@string/productList" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,19 +41,19 @@
                 android:id="@+id/nameET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Наименование" />
+                android:hint="@string/nameHint" />
 
             <EditText
                 android:id="@+id/priceET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Цена" />
+                android:hint="@string/priceHint" />
 
             <EditText
                 android:id="@+id/descriptionET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Краткое описание" />
+                android:hint="@string/descriptionHint" />
 
         </LinearLayout>
 
@@ -63,7 +63,7 @@
         android:id="@+id/buttonAdd"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Добавить" />
+        android:text="@string/addBTNtext" />
 
     <ListView
         android:id="@+id/listView"

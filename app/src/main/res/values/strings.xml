@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Grocery store</string>
+    <string name="createShop">Создать магазин</string>
+    <string name="appTitle">Магазин продуктов</string>
+    <string name="productList">Список продуктов</string>
+    <string name="nameHint">Наименование</string>
+    <string name="priceHint">Цена</string>
+    <string name="descriptionHint">Краткое описание</string>
+    <string name="addBTNtext">Добавить</string>
+    <string name="itemDescr">Описание товара</string>
+    <string name="item">Товар:</string>
 </resources>
